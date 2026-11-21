@@ -92,6 +92,8 @@ public abstract class PermanentImpl extends CardImpl implements Permanent {
     protected int damage;
     protected boolean controlledFromStartOfControllerTurn;
     protected int turnsOnBattlefield;
+    // turns of its controller begun while it was under that player's control (since it entered or last changed control)
+    protected int controllerTurnsBegun;
     protected boolean phasedIn = true;
     protected boolean indirectPhase = false;
     protected boolean faceDown;
@@ -164,6 +166,7 @@ public abstract class PermanentImpl extends CardImpl implements Permanent {
         this.damage = permanent.damage;
         this.controlledFromStartOfControllerTurn = permanent.controlledFromStartOfControllerTurn;
         this.turnsOnBattlefield = permanent.turnsOnBattlefield;
+        this.controllerTurnsBegun = permanent.controllerTurnsBegun;
         this.phasedIn = permanent.phasedIn;
         this.indirectPhase = permanent.indirectPhase;
         this.faceDown = permanent.faceDown;
@@ -555,7 +558,13 @@ public abstract class PermanentImpl extends CardImpl implements Permanent {
     public void beginningOfTurn(Game game) {
         if (game.isActivePlayer(this.controllerId)) {
             this.controlledFromStartOfControllerTurn = true;
+            this.controllerTurnsBegun++;
         }
+    }
+
+    @Override
+    public int getControllerTurnsBegun() {
+        return controllerTurnsBegun;
     }
 
     @Override
@@ -1014,6 +1023,7 @@ public abstract class PermanentImpl extends CardImpl implements Permanent {
         if (!controllerId.equals(beforeResetControllerId)) {
             this.removeFromCombat(game);
             this.controlledFromStartOfControllerTurn = false;
+            this.controllerTurnsBegun = 0;
             this.removeUncontrolledRingBearer(game);
             if (this.getPairedMOR() != null) {
                 Permanent paired = this.getPairedMOR().getPermanent(game);

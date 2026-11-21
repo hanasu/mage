@@ -106,4 +106,31 @@ public class EchoTest extends CardTestPlayerBase {
 
     }
 
+    /**
+     * Echo triggers only if the permanent came under your control since the beginning of your last upkeep
+     * (rule 702.30a). Volrath's Shapeshifter cast in turn 1 gets Karmic Guide's echo in turn 3: in turn 5 it has
+     * been under your control since before your last upkeep, so echo doesn't trigger.
+     */
+    @Test
+    public void testEchoAcquiredByPermanentControlledSinceBefore() {
+        // As long as the top card of your graveyard is a creature card, Volrath's Shapeshifter has the full text
+        // of that card and has the text "{2}: Discard a card."
+        addCard(Zone.HAND, playerA, "Volrath's Shapeshifter"); // {1}{U}{U}
+        // Flying, protection from black
+        // Echo {3}{W}{W}
+        // When Karmic Guide enters the battlefield, return target creature card from your graveyard to the battlefield.
+        addCard(Zone.HAND, playerA, "Karmic Guide");
+        addCard(Zone.BATTLEFIELD, playerA, "Island", 5);
+
+        castSpell(1, PhaseStep.PRECOMBAT_MAIN, playerA, "Volrath's Shapeshifter");
+        activateAbility(3, PhaseStep.PRECOMBAT_MAIN, playerA, "{2}: Discard a card");
+        setChoice(playerA, "Karmic Guide");
+
+        setStrictChooseMode(true);
+        setStopAt(5, PhaseStep.BEGIN_COMBAT);
+        execute();
+
+        assertPermanentCount(playerA, "Karmic Guide", 1);
+    }
+
 }

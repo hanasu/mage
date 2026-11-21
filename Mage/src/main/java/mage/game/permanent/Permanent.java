@@ -310,6 +310,12 @@ public interface Permanent extends Card, Controllable {
 
     int getTurnsOnBattlefield();
 
+    /**
+     * The turns of its controller that began while it was under that player's control, since it entered the
+     * battlefield or last changed control (for echo, rule 702.30a).
+     */
+    int getControllerTurnsBegun();
+
     void addPower(int power);
 
     void addToughness(int toughness);
