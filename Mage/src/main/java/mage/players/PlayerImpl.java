@@ -5339,25 +5339,31 @@ public abstract class PlayerImpl implements Player, Serializable {
                             "Choose the order in which the cards go to the graveyard?", source, game);
                 }
                 if (chooseOrder) {
-                    TargetCard target = new TargetCard(fromZone,
+                    // any zone: the cards can come from several, and a TargetCard of one zone offers
+                    // only that zone's cards (none at all on the battlefield or the stack)
+                    TargetCard target = new TargetCard(Zone.ALL,
                             new FilterCard("card to put on the top of your graveyard (last one chosen will be topmost)"));
                     target.setRequired(true);
                     while (choosingPlayer.canRespond() && cards.size() > 1) {
                         choosingPlayer.chooseTarget(Outcome.Neutral, cards, target, source, game);
                         UUID targetObjectId = target.getFirstTarget();
+                        target.clearChosen();
+                        if (targetObjectId == null || !cards.contains(targetObjectId)) {
+                            break; // no choice made: the rest go in their given order
+                        }
                         Card card = cards.get(targetObjectId, game);
                         cards.remove(targetObjectId);
                         if (card != null) {
-                            fromZone = game.getState().getZone(card.getId());
-                            if (choosingPlayer.moveCardToGraveyardWithInfo(card, source, game, fromZone)) {
+                            Zone cardZone = game.getState().getZone(card.getId());
+                            if (choosingPlayer.moveCardToGraveyardWithInfo(card, source, game, cardZone)) {
                                 movedCards.add(card);
                             }
                         }
-                        target.clearChosen();
                     }
-                    if (cards.size() == 1) {
-                        Card card = cards.getCards(game).iterator().next();
-                        if (card != null && choosingPlayer.moveCardToGraveyardWithInfo(card, source, game, fromZone)) {
+                    // the last card, or every card left without a choice, in the given order
+                    for (Card card : cards.getCards(game)) {
+                        Zone cardZone = game.getState().getZone(card.getId());
+                        if (choosingPlayer.moveCardToGraveyardWithInfo(card, source, game, cardZone)) {
                             movedCards.add(card);
                         }
                     }
