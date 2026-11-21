@@ -24,7 +24,7 @@ public final class RiseOfTheEldrazi extends ExpansionSet {
     }
 
     private RiseOfTheEldrazi() {
-        super("Rise of the Eldrazi", "ROE", ExpansionSet.buildDate(2010, 3, 17), SetType.EXPANSION);
+        super("Rise of the Eldrazi", "ROE", ExpansionSet.buildDate(2010, 4, 23), SetType.EXPANSION);
         this.blockName = "Zendikar";
         this.parentSet = Zendikar.getInstance();
         this.hasBoosters = true;

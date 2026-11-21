@@ -16,7 +16,7 @@ public final class Guru extends ExpansionSet {
     }
 
     private Guru() {
-        super("Guru", "PGRU", ExpansionSet.buildDate(1990, 1, 2), SetType.PROMOTIONAL);
+        super("Guru", "PGRU", ExpansionSet.buildDate(1999, 7, 12), SetType.PROMOTIONAL);
         this.hasBasicLands = true;
         this.hasBoosters = false;
 

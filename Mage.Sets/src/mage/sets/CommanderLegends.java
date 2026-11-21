@@ -16,7 +16,7 @@ public final class CommanderLegends extends ExpansionSet {
     }
 
     private CommanderLegends() {
-        super("Commander Legends", "CMR", ExpansionSet.buildDate(2020, 11, 1), SetType.SUPPLEMENTAL);
+        super("Commander Legends", "CMR", ExpansionSet.buildDate(2020, 11, 20), SetType.SUPPLEMENTAL);
         this.blockName = "Commander Legends";
         this.hasBasicLands = true;
         this.hasBoosters = true;

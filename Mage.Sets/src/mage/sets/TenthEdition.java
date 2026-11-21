@@ -16,7 +16,7 @@ public final class TenthEdition extends ExpansionSet {
     }
 
     private TenthEdition() {
-        super("Tenth Edition", "10E", ExpansionSet.buildDate(2007, 6, 14), SetType.CORE);
+        super("Tenth Edition", "10E", ExpansionSet.buildDate(2007, 7, 13), SetType.CORE);
         this.hasBoosters = true;
         this.numBoosterLands = 1;
         this.numBoosterCommon = 10;

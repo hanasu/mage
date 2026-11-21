@@ -16,7 +16,7 @@ public class LegacyChampionship extends ExpansionSet {
     }
 
     private LegacyChampionship() {
-        super("Legacy Championship", "OLGC", ExpansionSet.buildDate(2019, 11, 3), SetType.PROMOTIONAL);
+        super("Legacy Championship", "OLGC", ExpansionSet.buildDate(2011, 1, 1), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

@@ -71,6 +71,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -1124,6 +1125,28 @@ public class VerifyCardDataTest {
                             jsonSet.name
                     ));
                 }
+            }
+        }
+
+        // CHECK: wrong release date
+        for (ExpansionSet set : sets) {
+            if (set.getSetType().equals(SetType.CUSTOM_SET)) {
+                continue;
+            }
+            MtgJsonSet jsonSet = MtgJsonService.sets().getOrDefault(set.getCode().toUpperCase(Locale.ENGLISH), null);
+            if (jsonSet == null || jsonSet.releaseDate == null) {
+                continue;
+            }
+            LocalDate xmageDate = set.getReleaseDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate jsonDate = LocalDate.parse(jsonSet.releaseDate);
+            if (!xmageDate.equals(jsonDate)) {
+                // how-to fix: use mtgjson's release date in the set's buildDate (month starts from 1)
+                errorsList.add(String.format("Error: wrong release date: %s - %s (xmage: %s, mtgjson: %s)",
+                        set.getCode(),
+                        set.getName(),
+                        xmageDate,
+                        jsonDate
+                ));
             }
         }
 

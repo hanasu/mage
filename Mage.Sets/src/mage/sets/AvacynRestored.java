@@ -24,7 +24,7 @@ public final class AvacynRestored extends ExpansionSet {
     }
 
     private AvacynRestored() {
-        super("Avacyn Restored", "AVR", ExpansionSet.buildDate(2012, 4, 4), SetType.EXPANSION);
+        super("Avacyn Restored", "AVR", ExpansionSet.buildDate(2012, 5, 4), SetType.EXPANSION);
         this.blockName = "Innistrad";
         this.parentSet = Innistrad.getInstance();
         this.hasBoosters = true;

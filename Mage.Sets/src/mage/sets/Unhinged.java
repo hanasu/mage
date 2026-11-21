@@ -18,7 +18,7 @@ public final class Unhinged extends ExpansionSet {
     }
 
     private Unhinged() {
-        super("Unhinged", "UNH", ExpansionSet.buildDate(2004, 11, 20), SetType.JOKE_SET);
+        super("Unhinged", "UNH", ExpansionSet.buildDate(2004, 11, 19), SetType.JOKE_SET);
         this.hasBoosters = false; // un-set, low implemented cards
 
         cards.add(new SetCardInfo("\"Ach! Hans, Run!\"", 116, Rarity.RARE, mage.cards.a.AchHansRun.class));

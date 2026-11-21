@@ -16,7 +16,7 @@ public class VintageChampionship extends ExpansionSet {
     }
 
     private VintageChampionship() {
-        super("Vintage Championship", "OVNT", ExpansionSet.buildDate(2019, 11, 3), SetType.PROMOTIONAL);
+        super("Vintage Championship", "OVNT", ExpansionSet.buildDate(2003, 1, 1), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

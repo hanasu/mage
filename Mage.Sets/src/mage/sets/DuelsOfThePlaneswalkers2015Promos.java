@@ -18,7 +18,7 @@ public final class DuelsOfThePlaneswalkers2015Promos extends ExpansionSet {
     }
 
     private DuelsOfThePlaneswalkers2015Promos() {
-        super("Duels of the Planeswalkers 2015 Promos", "PDP15", ExpansionSet.buildDate(2014, 1, 1), SetType.PROMOTIONAL);
+        super("Duels of the Planeswalkers 2015 Promos", "PDP15", ExpansionSet.buildDate(2014, 7, 9), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

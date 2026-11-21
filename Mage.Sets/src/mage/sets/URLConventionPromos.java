@@ -16,7 +16,7 @@ public class URLConventionPromos extends ExpansionSet {
     }
 
     private URLConventionPromos() {
-        super("URL/Convention Promos", "PURL", ExpansionSet.buildDate(2015, 1, 23), SetType.PROMOTIONAL);
+        super("URL/Convention Promos", "PURL", ExpansionSet.buildDate(2009, 2, 8), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

@@ -18,7 +18,7 @@ public final class FutureSight extends ExpansionSet {
     }
 
     private FutureSight() {
-        super("Future Sight", "FUT", ExpansionSet.buildDate(2007, 4, 4), SetType.EXPANSION);
+        super("Future Sight", "FUT", ExpansionSet.buildDate(2007, 5, 4), SetType.EXPANSION);
         this.blockName = "Time Spiral";
         this.parentSet = TimeSpiral.getInstance();
         this.hasBasicLands = false;

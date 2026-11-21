@@ -16,7 +16,7 @@ public final class Unfinity extends ExpansionSet {
     }
 
     private Unfinity() {
-        super("Unfinity", "UNF", ExpansionSet.buildDate(2022, 4, 1), SetType.SUPPLEMENTAL);
+        super("Unfinity", "UNF", ExpansionSet.buildDate(2022, 10, 7), SetType.SUPPLEMENTAL);
         this.hasBasicLands = true;
         this.hasBoosters = false; // un-set, low implemented cards
 

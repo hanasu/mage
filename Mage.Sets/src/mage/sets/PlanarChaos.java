@@ -18,7 +18,7 @@ public final class PlanarChaos extends ExpansionSet {
     }
 
     private PlanarChaos() {
-        super("Planar Chaos", "PLC", ExpansionSet.buildDate(2007, 1, 2), SetType.EXPANSION);
+        super("Planar Chaos", "PLC", ExpansionSet.buildDate(2007, 2, 2), SetType.EXPANSION);
         this.blockName = "Time Spiral";
         this.parentSet = TimeSpiral.getInstance();
         this.hasBasicLands = false;

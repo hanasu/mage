@@ -16,7 +16,7 @@ public class SecretLairDrop extends ExpansionSet {
     }
 
     private SecretLairDrop() {
-        super("Secret Lair Drop", "SLD", ExpansionSet.buildDate(2020, 3, 12), SetType.PROMOTIONAL);
+        super("Secret Lair Drop", "SLD", ExpansionSet.buildDate(2019, 12, 2), SetType.PROMOTIONAL);
         this.hasBoosters = false; // no boosters, it's a cards shop
         this.hasBasicLands = true;
 

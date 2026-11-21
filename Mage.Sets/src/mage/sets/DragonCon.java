@@ -17,7 +17,7 @@ public class DragonCon extends ExpansionSet {
     }
 
     private DragonCon() {
-        super("Dragon Con", "PDRC", ExpansionSet.buildDate(1995, 7, 15), SetType.PROMOTIONAL);
+        super("Dragon Con", "PDRC", ExpansionSet.buildDate(1994, 7, 15), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

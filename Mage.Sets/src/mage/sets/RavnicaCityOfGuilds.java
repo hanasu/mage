@@ -16,7 +16,7 @@ public final class RavnicaCityOfGuilds extends ExpansionSet {
     }
 
     private RavnicaCityOfGuilds() {
-        super("Ravnica: City of Guilds", "RAV", ExpansionSet.buildDate(2005, 9, 24), SetType.EXPANSION);
+        super("Ravnica: City of Guilds", "RAV", ExpansionSet.buildDate(2005, 10, 7), SetType.EXPANSION);
         this.blockName = "Ravnica";
         this.hasBoosters = true;
         this.rotationSet = true;

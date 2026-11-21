@@ -18,7 +18,7 @@ public final class EuropeanLandProgram extends ExpansionSet {
     }
 
     private EuropeanLandProgram() {
-        super("European Land Program", "PELP", ExpansionSet.buildDate(2000, 2, 14), SetType.PROMOTIONAL);
+        super("European Land Program", "PELP", ExpansionSet.buildDate(2000, 2, 5), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = true;
 

@@ -16,7 +16,7 @@ public class WorldwakePromos extends ExpansionSet {
     }
 
     private WorldwakePromos() {
-        super("Worldwake Promos", "PWWK", ExpansionSet.buildDate(2010, 7, 30), SetType.PROMOTIONAL);
+        super("Worldwake Promos", "PWWK", ExpansionSet.buildDate(2010, 2, 5), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

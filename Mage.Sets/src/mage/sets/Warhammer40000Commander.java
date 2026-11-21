@@ -16,7 +16,7 @@ public final class Warhammer40000Commander extends ExpansionSet {
     }
 
     private Warhammer40000Commander() {
-        super("Warhammer 40,000 Commander", "40K", ExpansionSet.buildDate(2022, 4, 29), SetType.SUPPLEMENTAL);
+        super("Warhammer 40,000 Commander", "40K", ExpansionSet.buildDate(2022, 10, 7), SetType.SUPPLEMENTAL);
         this.hasBasicLands = true;
         this.hasBoosters = false;
 

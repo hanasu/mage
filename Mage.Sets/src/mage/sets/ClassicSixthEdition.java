@@ -16,7 +16,7 @@ public final class ClassicSixthEdition extends ExpansionSet {
     }
 
     private ClassicSixthEdition() {
-        super("Classic Sixth Edition", "6ED", ExpansionSet.buildDate(1999, 3, 28), SetType.CORE);
+        super("Classic Sixth Edition", "6ED", ExpansionSet.buildDate(1999, 4, 21), SetType.CORE);
         this.hasBoosters = true;
         this.numBoosterLands = 0;
         this.numBoosterCommon = 11;

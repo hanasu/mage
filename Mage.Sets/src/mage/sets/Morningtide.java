@@ -18,7 +18,7 @@ public final class Morningtide extends ExpansionSet {
     }
 
     private Morningtide() {
-        super("Morningtide", "MOR", ExpansionSet.buildDate(2008, 1, 1), SetType.EXPANSION);
+        super("Morningtide", "MOR", ExpansionSet.buildDate(2008, 2, 1), SetType.EXPANSION);
         this.blockName = "Lorwyn";
         this.parentSet = Morningtide.getInstance();
         this.hasBasicLands = false;

@@ -21,7 +21,7 @@ public final class Coldsnap extends ExpansionSet {
     }
 
     private Coldsnap() {
-        super("Coldsnap", "CSP", ExpansionSet.buildDate(2006, 6, 21), SetType.EXPANSION);
+        super("Coldsnap", "CSP", ExpansionSet.buildDate(2006, 7, 21), SetType.EXPANSION);
         this.blockName = "Ice Age";
         this.hasBoosters = true;
         this.rotationSet = true;

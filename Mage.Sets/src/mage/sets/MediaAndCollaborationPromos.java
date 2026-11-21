@@ -16,7 +16,7 @@ public class MediaAndCollaborationPromos extends ExpansionSet {
     }
 
     private MediaAndCollaborationPromos() {
-        super("Media and Collaboration Promos", "PMEI", ExpansionSet.buildDate(2020, 3, 26), SetType.PROMOTIONAL);
+        super("Media and Collaboration Promos", "PMEI", ExpansionSet.buildDate(1995, 1, 1), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

@@ -18,7 +18,7 @@ public final class LimitedEditionBeta extends ExpansionSet {
     }
 
     private LimitedEditionBeta() {
-        super("Limited Edition Beta", "LEB", ExpansionSet.buildDate(1993, 10, 1), SetType.CORE);
+        super("Limited Edition Beta", "LEB", ExpansionSet.buildDate(1993, 10, 4), SetType.CORE);
         this.hasBoosters = true;
         this.numBoosterLands = 0;
         this.numBoosterCommon = 11;

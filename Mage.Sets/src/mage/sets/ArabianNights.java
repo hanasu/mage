@@ -16,7 +16,7 @@ public final class ArabianNights extends ExpansionSet {
     }
 
     private ArabianNights() {
-        super("Arabian Nights", "ARN", ExpansionSet.buildDate(1993, 11, 1), SetType.EXPANSION);
+        super("Arabian Nights", "ARN", ExpansionSet.buildDate(1993, 12, 17), SetType.EXPANSION);
         this.hasBasicLands = true;
         this.hasBoosters = true; // note: paper boosters had only 8 cards
         this.numBoosterLands = 1;

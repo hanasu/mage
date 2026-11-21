@@ -18,7 +18,7 @@ public class MagicFest2025 extends ExpansionSet {
     }
 
     private MagicFest2025() {
-        super("MagicFest 2025", "PF25", ExpansionSet.buildDate(2025, 2, 3), SetType.PROMOTIONAL);
+        super("MagicFest 2025", "PF25", ExpansionSet.buildDate(2025, 1, 1), SetType.PROMOTIONAL);
         hasBasicLands = false;
 
         cards.add(new SetCardInfo("Arcane Signet", 10, Rarity.RARE, mage.cards.a.ArcaneSignet.class));

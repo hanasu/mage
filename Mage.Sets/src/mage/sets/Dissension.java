@@ -17,7 +17,7 @@ public final class Dissension extends ExpansionSet {
     }
 
     private Dissension() {
-        super("Dissension", "DIS", ExpansionSet.buildDate(2006, 4, 5), SetType.EXPANSION);
+        super("Dissension", "DIS", ExpansionSet.buildDate(2006, 5, 5), SetType.EXPANSION);
         this.blockName = "Ravnica";
         this.parentSet = RavnicaCityOfGuilds.getInstance();
         this.hasBasicLands = false;

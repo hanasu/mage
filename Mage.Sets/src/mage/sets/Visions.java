@@ -23,7 +23,7 @@ public final class Visions extends ExpansionSet {
     }
 
     private Visions() {
-        super("Visions", "VIS", ExpansionSet.buildDate(1997, 1, 11), SetType.EXPANSION);
+        super("Visions", "VIS", ExpansionSet.buildDate(1997, 2, 3), SetType.EXPANSION);
         this.blockName = "Mirage";
         this.parentSet = Mirage.getInstance();
         this.hasBasicLands = false;

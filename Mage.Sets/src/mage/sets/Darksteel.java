@@ -13,7 +13,7 @@ public final class Darksteel extends ExpansionSet {
     }
 
     public Darksteel() {
-        super("Darksteel", "DST", ExpansionSet.buildDate(2004, 1, 6), SetType.EXPANSION);
+        super("Darksteel", "DST", ExpansionSet.buildDate(2004, 2, 6), SetType.EXPANSION);
         this.blockName = "Mirrodin";
         this.parentSet = Mirrodin.getInstance();
         this.hasBasicLands = false;

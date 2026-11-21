@@ -16,7 +16,7 @@ public final class DoubleMasters2022 extends ExpansionSet {
     }
 
     private DoubleMasters2022() {
-        super("Double Masters 2022", "2X2", ExpansionSet.buildDate(2020, 7, 8), SetType.SUPPLEMENTAL);
+        super("Double Masters 2022", "2X2", ExpansionSet.buildDate(2022, 7, 8), SetType.SUPPLEMENTAL);
         this.blockName = "Reprint";
         this.hasBasicLands = false;
         this.hasBoosters = true;

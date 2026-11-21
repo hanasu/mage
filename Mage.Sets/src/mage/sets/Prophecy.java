@@ -18,7 +18,7 @@ public final class Prophecy extends ExpansionSet {
     }
 
     private Prophecy() {
-        super("Prophecy", "PCY", ExpansionSet.buildDate(2000, 4, 27), SetType.EXPANSION);
+        super("Prophecy", "PCY", ExpansionSet.buildDate(2000, 6, 5), SetType.EXPANSION);
         this.blockName = "Masques";
         this.parentSet = MercadianMasques.getInstance();
         this.hasBasicLands = false;

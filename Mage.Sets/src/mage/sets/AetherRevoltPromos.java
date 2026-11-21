@@ -16,7 +16,7 @@ public class AetherRevoltPromos extends ExpansionSet {
     }
 
     private AetherRevoltPromos() {
-        super("Aether Revolt Promos", "PAER", ExpansionSet.buildDate(2017, 1, 21), SetType.PROMOTIONAL);
+        super("Aether Revolt Promos", "PAER", ExpansionSet.buildDate(2017, 1, 20), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

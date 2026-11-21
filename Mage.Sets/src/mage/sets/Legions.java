@@ -18,7 +18,7 @@ public final class Legions extends ExpansionSet {
     }
 
     private Legions() {
-        super("Legions", "LGN", ExpansionSet.buildDate(2003, 1, 25), SetType.EXPANSION);
+        super("Legions", "LGN", ExpansionSet.buildDate(2003, 2, 3), SetType.EXPANSION);
         this.blockName = "Onslaught";
         this.parentSet = Onslaught.getInstance();
         this.hasBasicLands = false;

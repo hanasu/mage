@@ -16,7 +16,7 @@ public final class AetherdriftCommander extends ExpansionSet {
     }
 
     private AetherdriftCommander() {
-        super("Aetherdrift Commander", "DRC", ExpansionSet.buildDate(2025, 1, 21), SetType.SUPPLEMENTAL);
+        super("Aetherdrift Commander", "DRC", ExpansionSet.buildDate(2025, 2, 14), SetType.SUPPLEMENTAL);
         this.hasBasicLands = false;
 
         cards.add(new SetCardInfo("Academy Ruins", 58, Rarity.RARE, mage.cards.a.AcademyRuins.class));

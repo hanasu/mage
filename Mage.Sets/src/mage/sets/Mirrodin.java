@@ -13,7 +13,7 @@ public final class Mirrodin extends ExpansionSet {
     }
 
     private Mirrodin() {
-        super("Mirrodin", "MRD", ExpansionSet.buildDate(2003, 9, 2), SetType.EXPANSION);
+        super("Mirrodin", "MRD", ExpansionSet.buildDate(2003, 10, 2), SetType.EXPANSION);
         this.blockName = "Mirrodin";
         this.hasBoosters = true;
         this.rotationSet = true;

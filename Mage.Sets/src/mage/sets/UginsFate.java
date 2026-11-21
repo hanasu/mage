@@ -17,7 +17,7 @@ public final class UginsFate extends ExpansionSet {
     }
 
     private UginsFate() {
-        super("Ugin's Fate", "UGIN", ExpansionSet.buildDate(2015, 1, 16), SetType.PROMOTIONAL);
+        super("Ugin's Fate", "UGIN", ExpansionSet.buildDate(2015, 1, 17), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

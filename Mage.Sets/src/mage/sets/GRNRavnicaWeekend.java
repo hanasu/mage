@@ -16,7 +16,7 @@ public class GRNRavnicaWeekend extends ExpansionSet {
     }
 
     private GRNRavnicaWeekend() {
-        super("GRN Ravnica Weekend", "PRWK", ExpansionSet.buildDate(2018, 10, 5), SetType.PROMOTIONAL);
+        super("GRN Ravnica Weekend", "PRWK", ExpansionSet.buildDate(2018, 11, 9), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = true;
 

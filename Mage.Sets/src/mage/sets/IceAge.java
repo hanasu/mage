@@ -16,7 +16,7 @@ public final class IceAge extends ExpansionSet {
     }
 
     private IceAge() {
-        super("Ice Age", "ICE", ExpansionSet.buildDate(1995, 5, 1), SetType.EXPANSION);
+        super("Ice Age", "ICE", ExpansionSet.buildDate(1995, 6, 3), SetType.EXPANSION);
         this.blockName = "Ice Age";
         this.hasBoosters = true;
         this.numBoosterLands = 0;

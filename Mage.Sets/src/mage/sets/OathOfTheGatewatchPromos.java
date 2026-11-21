@@ -16,7 +16,7 @@ public class OathOfTheGatewatchPromos extends ExpansionSet {
     }
 
     private OathOfTheGatewatchPromos() {
-        super("Oath of the Gatewatch Promos", "POGW", ExpansionSet.buildDate(2016, 1, 23), SetType.PROMOTIONAL);
+        super("Oath of the Gatewatch Promos", "POGW", ExpansionSet.buildDate(2016, 1, 22), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

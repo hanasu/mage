@@ -17,7 +17,7 @@ public class ChampsAndStates extends ExpansionSet {
     }
 
     private ChampsAndStates() {
-        super("Champs and States", "PCMP", ExpansionSet.buildDate(2008, 3, 29), SetType.PROMOTIONAL);
+        super("Champs and States", "PCMP", ExpansionSet.buildDate(2006, 3, 18), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

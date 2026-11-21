@@ -18,7 +18,7 @@ public final class Scourge extends ExpansionSet {
     }
 
     private Scourge() {
-        super("Scourge", "SCG", ExpansionSet.buildDate(2003, 5, 17), SetType.EXPANSION);
+        super("Scourge", "SCG", ExpansionSet.buildDate(2003, 5, 26), SetType.EXPANSION);
         this.blockName = "Onslaught";
         this.parentSet = Onslaught.getInstance();
         this.hasBasicLands = false;

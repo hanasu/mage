@@ -16,7 +16,7 @@ public final class Antiquities extends ExpansionSet {
     }
 
     private Antiquities() {
-        super("Antiquities", "ATQ", ExpansionSet.buildDate(1994, 2, 1), SetType.EXPANSION);
+        super("Antiquities", "ATQ", ExpansionSet.buildDate(1994, 3, 4), SetType.EXPANSION);
         this.hasBasicLands = false;
         this.hasBoosters = true; // note: paper boosters had only 8 cards
         this.numBoosterLands = 1;

@@ -18,7 +18,7 @@ public final class Nemesis extends ExpansionSet {
     }
 
     private Nemesis() {
-        super("Nemesis", "NEM", ExpansionSet.buildDate(2000, 1, 5), SetType.EXPANSION);
+        super("Nemesis", "NEM", ExpansionSet.buildDate(2000, 2, 14), SetType.EXPANSION);
         this.blockName = "Masques";
         this.parentSet = MercadianMasques.getInstance();
         this.hasBasicLands = false;

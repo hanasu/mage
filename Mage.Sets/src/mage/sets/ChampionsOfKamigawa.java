@@ -13,7 +13,7 @@ public final class ChampionsOfKamigawa extends ExpansionSet {
     }
 
     private ChampionsOfKamigawa() {
-        super("Champions of Kamigawa", "CHK", ExpansionSet.buildDate(2004, 9, 1), SetType.EXPANSION);
+        super("Champions of Kamigawa", "CHK", ExpansionSet.buildDate(2004, 10, 1), SetType.EXPANSION);
         this.blockName = "Kamigawa";
         this.hasBoosters = true;
         this.rotationSet = true;

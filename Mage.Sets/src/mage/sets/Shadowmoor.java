@@ -23,7 +23,7 @@ public final class Shadowmoor extends ExpansionSet {
     }
 
     private Shadowmoor() {
-        super("Shadowmoor", "SHM", ExpansionSet.buildDate(2008, 4, 2), SetType.EXPANSION);
+        super("Shadowmoor", "SHM", ExpansionSet.buildDate(2008, 5, 2), SetType.EXPANSION);
         this.blockName = "Shadowmoor";
         this.hasBoosters = true;
         this.numBoosterLands = 0;

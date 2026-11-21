@@ -24,7 +24,7 @@ public final class Worldwake extends ExpansionSet {
     }
 
     private Worldwake() {
-        super("Worldwake", "WWK", ExpansionSet.buildDate(2010, 1, 30), SetType.EXPANSION);
+        super("Worldwake", "WWK", ExpansionSet.buildDate(2010, 2, 5), SetType.EXPANSION);
         this.blockName = "Zendikar";
         this.parentSet = Zendikar.getInstance();
         this.hasBasicLands = false;

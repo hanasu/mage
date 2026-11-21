@@ -20,7 +20,7 @@ public final class NewPhyrexia extends ExpansionSet {
     }
 
     private NewPhyrexia() {
-        super("New Phyrexia", "NPH", ExpansionSet.buildDate(2011, 4, 4), SetType.EXPANSION);
+        super("New Phyrexia", "NPH", ExpansionSet.buildDate(2011, 5, 13), SetType.EXPANSION);
         this.blockName = "Scars of Mirrodin";
         this.parentSet = ScarsOfMirrodin.getInstance();
         this.hasBoosters = true;

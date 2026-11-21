@@ -24,7 +24,7 @@ public final class AlaraReborn extends ExpansionSet {
     }
 
     private AlaraReborn() {
-        super("Alara Reborn", "ARB", ExpansionSet.buildDate(2009, 3, 25), SetType.EXPANSION);
+        super("Alara Reborn", "ARB", ExpansionSet.buildDate(2009, 4, 30), SetType.EXPANSION);
         this.blockName = "Shards of Alara";
         this.parentSet = ShardsOfAlara.getInstance();
         this.hasBasicLands = false;

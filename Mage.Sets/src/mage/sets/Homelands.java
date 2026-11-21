@@ -16,7 +16,7 @@ public final class Homelands extends ExpansionSet {
     }
 
     private Homelands() {
-        super("Homelands", "HML", ExpansionSet.buildDate(1995, 9, 1), SetType.EXPANSION);
+        super("Homelands", "HML", ExpansionSet.buildDate(1995, 10, 1), SetType.EXPANSION);
         this.hasBasicLands = false;
         this.hasBoosters = true;
         this.numBoosterLands = 1;

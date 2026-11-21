@@ -18,7 +18,7 @@ public final class Planechase extends ExpansionSet {
     }
 
     private Planechase() {
-        super("Planechase", "HOP", ExpansionSet.buildDate(2009, 8, 4), SetType.SUPPLEMENTAL);
+        super("Planechase", "HOP", ExpansionSet.buildDate(2009, 9, 4), SetType.SUPPLEMENTAL);
         this.blockName = "Command Zone";
         cards.add(new SetCardInfo("Akroma's Vengeance", 1, Rarity.RARE, mage.cards.a.AkromasVengeance.class));
         cards.add(new SetCardInfo("Ancient Den", 130, Rarity.COMMON, mage.cards.a.AncientDen.class));

@@ -16,7 +16,7 @@ public class WorldChampionshipDecks2002 extends ExpansionSet {
     }
 
     private WorldChampionshipDecks2002() {
-        super("World Championship Decks 2002", "WC02", ExpansionSet.buildDate(2002, 8, 14), SetType.PROMOTIONAL);
+        super("World Championship Decks 2002", "WC02", ExpansionSet.buildDate(2002, 12, 1), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = true;
 

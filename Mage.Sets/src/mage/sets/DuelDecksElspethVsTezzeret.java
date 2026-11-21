@@ -13,7 +13,7 @@ public final class DuelDecksElspethVsTezzeret extends ExpansionSet {
     }
 
     private DuelDecksElspethVsTezzeret() {
-        super("Duel Decks: Elspeth vs. Tezzeret", "DDF", ExpansionSet.buildDate(2010, 8, 3), SetType.SUPPLEMENTAL);
+        super("Duel Decks: Elspeth vs. Tezzeret", "DDF", ExpansionSet.buildDate(2010, 9, 3), SetType.SUPPLEMENTAL);
         this.blockName = "Duel Decks";
         this.hasBasicLands = true;
 

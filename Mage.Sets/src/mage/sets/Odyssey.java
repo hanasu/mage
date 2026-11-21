@@ -24,7 +24,7 @@ public final class Odyssey extends ExpansionSet {
     }
 
     private Odyssey() {
-        super("Odyssey", "ODY", ExpansionSet.buildDate(2001, 9, 22), SetType.EXPANSION);
+        super("Odyssey", "ODY", ExpansionSet.buildDate(2001, 10, 1), SetType.EXPANSION);
         this.blockName = "Odyssey";
         this.hasBoosters = true;
         this.rotationSet = true;

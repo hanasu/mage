@@ -17,7 +17,7 @@ public class TreasureChest extends ExpansionSet {
     }
 
     private TreasureChest() {
-        super("Treasure Chest", "PZ2", ExpansionSet.buildDate(2018, 12, 6), SetType.MAGIC_ONLINE);
+        super("Treasure Chest", "PZ2", ExpansionSet.buildDate(2016, 11, 16), SetType.MAGIC_ONLINE);
         this.hasBoosters = false;
         this.hasBasicLands = true;
 

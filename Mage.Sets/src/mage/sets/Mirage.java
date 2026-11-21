@@ -16,7 +16,7 @@ public final class Mirage extends ExpansionSet {
     }
 
     private Mirage() {
-        super("Mirage", "MIR", ExpansionSet.buildDate(1996, 8, 21), SetType.EXPANSION);
+        super("Mirage", "MIR", ExpansionSet.buildDate(1996, 10, 8), SetType.EXPANSION);
         this.blockName = "Mirage";
         this.hasBoosters = true;
         this.numBoosterLands = 0;

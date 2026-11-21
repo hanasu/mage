@@ -16,7 +16,7 @@ public final class MercadianMasques extends ExpansionSet {
     }
 
     private MercadianMasques() {
-        super("Mercadian Masques", "MMQ", ExpansionSet.buildDate(1999, 8, 25), SetType.EXPANSION);
+        super("Mercadian Masques", "MMQ", ExpansionSet.buildDate(1999, 10, 4), SetType.EXPANSION);
         this.blockName = "Masques";
         this.hasBoosters = true;
         this.rotationSet = true;

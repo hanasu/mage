@@ -16,7 +16,7 @@ public class JuniorSeriesEurope extends ExpansionSet {
     }
 
     private JuniorSeriesEurope() {
-        super("Junior Series Europe", "PJSE", ExpansionSet.buildDate(2008, 1, 1), SetType.PROMOTIONAL);
+        super("Junior Series Europe", "PJSE", ExpansionSet.buildDate(2005, 1, 1), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

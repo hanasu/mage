@@ -16,7 +16,7 @@ public class FateReforgedPromos extends ExpansionSet {
     }
 
     private FateReforgedPromos() {
-        super("Fate Reforged Promos", "PFRF", ExpansionSet.buildDate(2015, 1, 24), SetType.PROMOTIONAL);
+        super("Fate Reforged Promos", "PFRF", ExpansionSet.buildDate(2015, 1, 23), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

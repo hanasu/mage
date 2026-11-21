@@ -18,7 +18,7 @@ public final class Starter2000 extends ExpansionSet {
     }
 
     private Starter2000() {
-        super("Starter 2000", "S00", ExpansionSet.buildDate(2000, 7, 1), SetType.SUPPLEMENTAL);
+        super("Starter 2000", "S00", ExpansionSet.buildDate(2000, 4, 1), SetType.SUPPLEMENTAL);
         this.blockName = "Beginner";
         this.hasBasicLands = false;
         this.hasBoosters = false;

@@ -18,7 +18,7 @@ public final class AsiaPacificLandProgram extends ExpansionSet {
     }
 
     private AsiaPacificLandProgram() {
-        super("Asia Pacific Land Program", "PALP", ExpansionSet.buildDate(1997, 10, 13), SetType.PROMOTIONAL);
+        super("Asia Pacific Land Program", "PALP", ExpansionSet.buildDate(1998, 9, 1), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = true;
 

@@ -16,7 +16,7 @@ public class DCILegendMembership extends ExpansionSet {
     }
 
     private DCILegendMembership() {
-        super("DCI Legend Membership", "PLGM", ExpansionSet.buildDate(1995, 1, 1), SetType.PROMOTIONAL);
+        super("DCI Legend Membership", "PLGM", ExpansionSet.buildDate(1996, 7, 1), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

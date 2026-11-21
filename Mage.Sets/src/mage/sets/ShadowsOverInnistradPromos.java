@@ -16,7 +16,7 @@ public class ShadowsOverInnistradPromos extends ExpansionSet {
     }
 
     private ShadowsOverInnistradPromos() {
-        super("Shadows over Innistrad Promos", "PSOI", ExpansionSet.buildDate(2016, 4, 9), SetType.PROMOTIONAL);
+        super("Shadows over Innistrad Promos", "PSOI", ExpansionSet.buildDate(2016, 4, 8), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

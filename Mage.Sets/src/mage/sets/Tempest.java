@@ -20,7 +20,7 @@ public final class Tempest extends ExpansionSet {
     }
 
     private Tempest() {
-        super("Tempest", "TMP", ExpansionSet.buildDate(1997, 10, 1), SetType.EXPANSION);
+        super("Tempest", "TMP", ExpansionSet.buildDate(1997, 10, 14), SetType.EXPANSION);
         this.blockName = "Tempest";
         this.hasBoosters = true;
         this.numBoosterLands = 0;

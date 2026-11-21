@@ -18,7 +18,7 @@ public final class BetrayersOfKamigawa extends ExpansionSet {
     }
 
     private BetrayersOfKamigawa() {
-        super("Betrayers of Kamigawa", "BOK", ExpansionSet.buildDate(2005, 1, 4), SetType.EXPANSION);
+        super("Betrayers of Kamigawa", "BOK", ExpansionSet.buildDate(2005, 2, 4), SetType.EXPANSION);
         this.blockName = "Kamigawa";
         this.parentSet = ChampionsOfKamigawa.getInstance();
         this.hasBasicLands = false;

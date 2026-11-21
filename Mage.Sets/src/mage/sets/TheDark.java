@@ -16,7 +16,7 @@ public final class TheDark extends ExpansionSet {
     }
 
     private TheDark() {
-        super("The Dark", "DRK", ExpansionSet.buildDate(1994, 7, 1), SetType.EXPANSION);
+        super("The Dark", "DRK", ExpansionSet.buildDate(1994, 8, 1), SetType.EXPANSION);
         this.hasBasicLands = false;
         this.hasBoosters = true; // note: paper boosters had only 8 cards
         this.numBoosterLands = 1;

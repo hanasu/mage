@@ -16,7 +16,7 @@ public final class ModernHorizons3Commander extends ExpansionSet {
     }
 
     private ModernHorizons3Commander() {
-        super("Modern Horizons 3 Commander", "M3C", ExpansionSet.buildDate(2024, 6, 7), SetType.SUPPLEMENTAL);
+        super("Modern Horizons 3 Commander", "M3C", ExpansionSet.buildDate(2024, 6, 14), SetType.SUPPLEMENTAL);
         this.hasBasicLands = false;
 
         cards.add(new SetCardInfo("Acidic Slime", 218, Rarity.UNCOMMON, mage.cards.a.AcidicSlime.class));

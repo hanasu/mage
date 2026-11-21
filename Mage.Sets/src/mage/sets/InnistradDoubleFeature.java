@@ -16,7 +16,7 @@ public final class InnistradDoubleFeature extends ExpansionSet {
     }
 
     private InnistradDoubleFeature() {
-        super("Innistrad: Double Feature", "DBL", ExpansionSet.buildDate(2021, 1, 28), SetType.SUPPLEMENTAL);
+        super("Innistrad: Double Feature", "DBL", ExpansionSet.buildDate(2022, 1, 28), SetType.SUPPLEMENTAL);
 
         // https://magic.wizards.com/en/news/feature/innistrad-double-feature-product-overview-2021-11-15
         // #535 Endless Ranks of the Dead is promo card, not in booster

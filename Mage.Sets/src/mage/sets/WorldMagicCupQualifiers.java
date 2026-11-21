@@ -19,7 +19,7 @@ public final class WorldMagicCupQualifiers extends ExpansionSet {
     }
 
     private WorldMagicCupQualifiers() {
-        super("World Magic Cup Qualifiers", "WMC", ExpansionSet.buildDate(2011, 6, 17), SetType.PROMOTIONAL);
+        super("World Magic Cup Qualifiers", "WMC", ExpansionSet.buildDate(2013, 4, 6), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

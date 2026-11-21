@@ -16,7 +16,7 @@ public class JuniorAPACSeries extends ExpansionSet {
     }
 
     private JuniorAPACSeries() {
-        super("Junior APAC Series", "PJAS", ExpansionSet.buildDate(2008, 1, 1), SetType.PROMOTIONAL);
+        super("Junior APAC Series", "PJAS", ExpansionSet.buildDate(2006, 1, 1), SetType.PROMOTIONAL);
         this.hasBoosters = false;
         this.hasBasicLands = false;
 

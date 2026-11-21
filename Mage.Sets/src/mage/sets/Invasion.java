@@ -24,7 +24,7 @@ public final class Invasion extends ExpansionSet {
     }
 
     private Invasion() {
-        super("Invasion", "INV", ExpansionSet.buildDate(2000, 9, 2), SetType.EXPANSION);
+        super("Invasion", "INV", ExpansionSet.buildDate(2000, 10, 2), SetType.EXPANSION);
         this.blockName = "Invasion";
         this.hasBoosters = true;
         this.rotationSet = true;

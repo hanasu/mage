@@ -17,7 +17,7 @@ public final class FallenEmpires extends ExpansionSet {
     }
 
     private FallenEmpires() {
-        super("Fallen Empires", "FEM", ExpansionSet.buildDate(1994, 10, 1), SetType.EXPANSION);
+        super("Fallen Empires", "FEM", ExpansionSet.buildDate(1994, 11, 1), SetType.EXPANSION);
         this.hasBasicLands = false;
         this.hasBoosters = true; // note: paper boosters had only 8 cards
         this.numBoosterLands = 1;

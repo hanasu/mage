@@ -16,7 +16,7 @@ public final class Commander2020 extends ExpansionSet {
     }
 
     private Commander2020() {
-        super("Commander 2020", "C20", ExpansionSet.buildDate(2020, 4, 24), SetType.SUPPLEMENTAL);
+        super("Commander 2020", "C20", ExpansionSet.buildDate(2020, 4, 17), SetType.SUPPLEMENTAL);
         this.blockName = "Command Zone";
         this.hasBasicLands = false;
 

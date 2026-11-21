@@ -17,7 +17,7 @@ public final class WelcomeDeck2016 extends ExpansionSet {
     }
 
     private WelcomeDeck2016() {
-        super("Welcome Deck 2016", "W16", ExpansionSet.buildDate(2016, 3, 8), SetType.SUPPLEMENTAL_STANDARD_LEGAL);
+        super("Welcome Deck 2016", "W16", ExpansionSet.buildDate(2016, 4, 8), SetType.SUPPLEMENTAL_STANDARD_LEGAL);
         this.hasBasicLands = false;
         this.hasBoosters = false;
         cards.add(new SetCardInfo("Aegis Angel", 1, Rarity.RARE, mage.cards.a.AegisAngel.class));

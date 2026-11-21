@@ -17,7 +17,7 @@ public final class DuelDecksMerfolkVsGoblins extends ExpansionSet {
     }
 
     private DuelDecksMerfolkVsGoblins() {
-        super("Duel Decks: Merfolk vs. Goblins", "DDT", ExpansionSet.buildDate(2017, 11, 10), SetType.SUPPLEMENTAL);
+        super("Duel Decks: Merfolk vs. Goblins", "DDT", ExpansionSet.buildDate(2017, 10, 24), SetType.SUPPLEMENTAL);
         this.blockName = "Duel Decks";
         this.hasBasicLands = true;
 

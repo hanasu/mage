@@ -26,7 +26,7 @@ public final class MirrodinBesieged extends ExpansionSet {
     }
 
     private MirrodinBesieged() {
-        super("Mirrodin Besieged", "MBS", ExpansionSet.buildDate(2011, 1, 4), SetType.EXPANSION);
+        super("Mirrodin Besieged", "MBS", ExpansionSet.buildDate(2011, 2, 4), SetType.EXPANSION);
         this.blockName = "Scars of Mirrodin";
         this.parentSet = ScarsOfMirrodin.getInstance();
         this.hasBoosters = true;
