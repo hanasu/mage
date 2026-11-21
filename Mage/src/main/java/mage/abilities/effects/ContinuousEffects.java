@@ -968,6 +968,42 @@ public class ContinuousEffects implements Serializable {
     }
 
     //20091005 - 613
+    /**
+     * Rule 614.12: the replacement effects that modify how a permanent enters are checked against "the permanent
+     * as it would exist on the battlefield, taking into account ... continuous effects from the permanent's own
+     * static abilities that would apply to it once it's on the battlefield". So before its enters event, the
+     * effects of the entering permanent's own static abilities that apply to it as it enters
+     * ({@link ContinuousEffect#appliesWhileEntering()}) are applied to it in layers 1-6, which decide what
+     * abilities it has: Volrath's Shapeshifter entering with Triskelion on top of the graveyard has Triskelion's
+     * "enters with three +1/+1 counters". Effects already in the game that would apply to it aren't (XMage
+     * doesn't). No timestamp group is touched; the next full apply resets and reapplies everything.
+     */
+    public synchronized void applyOwnStaticEffectsToEntering(Permanent permanent, Game game) {
+        List<ContinuousEffect> own = new ArrayList<>();
+        for (ContinuousEffect effect : layeredEffects) {
+            if (effect.appliesWhileEntering() && layeredEffects.getAbility(effect.getId()).stream()
+                    .anyMatch(a -> a instanceof StaticAbility && permanent.getId().equals(a.getSourceId()))) {
+                own.add(effect);
+            }
+        }
+        if (own.isEmpty()) {
+            return;
+        }
+        own.sort(Comparator.comparingLong(ContinuousEffect::getOrder));
+        Layer[] layers = {Layer.CopyEffects_1, Layer.ControlChangingEffects_2, Layer.TextChangingEffects_3,
+                Layer.TypeChangingEffects_4, Layer.ColorChangingEffects_5, Layer.AbilityAddingRemovingEffects_6};
+        for (Layer layer : layers) {
+            SubLayer subLayer = layer == Layer.CopyEffects_1 ? SubLayer.CopyEffects_1a : SubLayer.NA;
+            for (ContinuousEffect effect : filterLayeredEffects(own, layer)) {
+                for (Ability ability : layeredEffects.getAbility(effect.getId())) {
+                    if (ability instanceof StaticAbility && permanent.getId().equals(ability.getSourceId())) {
+                        effect.apply(layer, subLayer, ability, game);
+                    }
+                }
+            }
+        }
+    }
+
     public synchronized void apply(Game game) {
         removeInactiveEffects(game);
         List<ContinuousEffect> activeLayerEffects = getLayeredEffects(game); // main call

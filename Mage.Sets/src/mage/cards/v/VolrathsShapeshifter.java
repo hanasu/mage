@@ -64,9 +64,26 @@ class VolrathsShapeshifterEffect extends ContinuousEffectImpl {
     }
 
     @Override
+    public boolean appliesWhileEntering() {
+        // its form decides which "enters" replacement effects apply (rule 614.12)
+        return true;
+    }
+
+    @Override
     public boolean apply(Game game, Ability source) {
-        Card card = game.getPlayer(source.getControllerId()).getGraveyard().getTopCard(game);
+        // the top card other than this one: entering from the graveyard, the Shapeshifter is still there, but its
+        // form is the one it has on the battlefield (rule 614.12)
+        Card card = null;
+        for (UUID cardId : game.getPlayer(source.getControllerId()).getGraveyard()) {
+            if (!cardId.equals(source.getSourceId())) {
+                card = game.getCard(cardId);
+            }
+        }
         Permanent permanent = game.getPermanent(source.getSourceId());
+        if (permanent == null) {
+            // entering: its form decides which "enters" replacement effects apply (rule 614.12)
+            permanent = game.getPermanentEntering(source.getSourceId());
+        }
 
         if (card == null
                 || permanent == null

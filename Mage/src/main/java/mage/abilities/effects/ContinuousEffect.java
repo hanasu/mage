@@ -37,6 +37,15 @@ public interface ContinuousEffect extends Effect {
 
     boolean hasLayer(Layer layer);
 
+    /**
+     * Whether this effect, from a static ability of a permanent, applies to that permanent as it enters the
+     * battlefield (rule 614.12: it decides which replacement effects modify how it enters). Only effects that
+     * change only their own permanent and can find it while it enters may say so.
+     */
+    default boolean appliesWhileEntering() {
+        return false;
+    }
+
     boolean isInactive(Ability source, Game game);
 
     /**

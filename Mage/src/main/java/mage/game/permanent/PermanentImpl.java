@@ -1418,6 +1418,9 @@ public abstract class PermanentImpl extends CardImpl implements Permanent {
             BecomesFaceDownCreatureEffect.makeFaceDownObject(game, null, this, faceDownType, null);
         }
 
+        // 614.12: its own static abilities' effects decide which "enters" replacement effects apply
+        game.getContinuousEffects().applyOwnStaticEffectsToEntering(this, game);
+
         // own etb event
         // 616.1a
         // If any of the replacement and/or prevention effects are self-replacement effects (see rule 614.15),
