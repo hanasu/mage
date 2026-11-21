@@ -282,4 +282,33 @@ public class AnimateDeadTest extends CardTestPlayerBase {
         assertGraveyardCount(playerA, "Walking Corpse", 0);
         assertGraveyardCount(playerA, "Flicker of Fate", 1);
     }
+
+    /**
+     * Protection works only on the battlefield (rule 702.16c), so Animate Dead can enchant a protection from black
+     * creature card in a graveyard and return it. Then Animate Dead can't be attached to it: Animate Dead goes to
+     * the graveyard and its leaves trigger sacrifices the creature, but the creature's enters trigger still resolves.
+     */
+    @Test
+    public void testAnimateProtectionFromBlackCreature() {
+        // Flying, protection from black
+        // Echo {3}{W}{W}
+        // When Karmic Guide enters the battlefield, return target creature card from your graveyard to the battlefield.
+        addCard(Zone.GRAVEYARD, playerA, "Karmic Guide", 1);
+        addCard(Zone.GRAVEYARD, playerA, "Silvercoat Lion", 1);
+        addCard(Zone.BATTLEFIELD, playerA, "Swamp", 2);
+        addCard(Zone.HAND, playerA, "Animate Dead"); // {1}{B}
+
+        setStrictChooseMode(true);
+
+        castSpell(1, PhaseStep.PRECOMBAT_MAIN, playerA, "Animate Dead", "Karmic Guide");
+        setChoice(playerA, "Karmic Guide"); // order triggers: Karmic Guide's and Animate Dead's leaves trigger
+        addTarget(playerA, "Silvercoat Lion");
+
+        setStopAt(1, PhaseStep.BEGIN_COMBAT);
+        execute();
+
+        assertGraveyardCount(playerA, "Animate Dead", 1);
+        assertGraveyardCount(playerA, "Karmic Guide", 1);
+        assertPermanentCount(playerA, "Silvercoat Lion", 1);
+    }
 }

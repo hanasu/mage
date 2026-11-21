@@ -1515,6 +1515,20 @@ public abstract class PermanentImpl extends CardImpl implements Permanent {
     }
 
     @Override
+    public boolean cantBeAttachedBy(MageObject attachment, Ability source, Game game, boolean silentMode) {
+        for (ProtectionAbility ability : this.getAbilities(game).getProtectionAbilities()) {
+            if ((!attachment.hasSubtype(SubType.AURA, game) || ability.removesAuras())
+                    && (!attachment.hasSubtype(SubType.EQUIPMENT, game) || ability.removesEquipment())
+                    && !attachment.getId().equals(ability.getAuraIdNotToBeRemoved())
+                    && !ability.canTarget(attachment, game)
+                    && !(ability.getDoesntRemoveControlled() && Objects.equals(getControllerOrOwnerId(), game.getControllerId(attachment.getId())))) {
+                return true;
+            }
+        }
+        return super.cantBeAttachedBy(attachment, source, game, silentMode);
+    }
+
+    @Override
     public boolean hasProtectionFrom(MageObject source, Game game) {
         for (ProtectionAbility ability : this.getAbilities(game).getProtectionAbilities()) {
             if (!ability.canTarget(source, game)) {

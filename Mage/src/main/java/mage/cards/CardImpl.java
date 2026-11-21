@@ -925,15 +925,6 @@ public abstract class CardImpl extends MageObjectImpl implements Card {
     @Override
     public boolean cantBeAttachedBy(MageObject attachment, Ability source, Game game, boolean silentMode) {
         boolean canAttach = true;
-        for (ProtectionAbility ability : this.getAbilities(game).getProtectionAbilities()) {
-            if ((!attachment.hasSubtype(SubType.AURA, game) || ability.removesAuras())
-                    && (!attachment.hasSubtype(SubType.EQUIPMENT, game) || ability.removesEquipment())
-                    && !attachment.getId().equals(ability.getAuraIdNotToBeRemoved())
-                    && !ability.canTarget(attachment, game)) {
-                canAttach &= ability.getDoesntRemoveControlled() && Objects.equals(getControllerOrOwnerId(), game.getControllerId(attachment.getId()));
-            }
-        }
-
         // If attachment is an aura, ensures this permanent can still be legally enchanted, according to the enchantment's Enchant ability
         if (attachment.hasSubtype(SubType.AURA, game)) {
             SpellAbility spellAbility = null;
