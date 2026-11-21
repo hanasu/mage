@@ -883,7 +883,14 @@ public abstract class PlayerImpl implements Player, Serializable {
         if (cards == null) {
             return discardedCards;
         }
-        for (Card card : cards.getCards(game)) {
+        // discarded cards go to the graveyard in order the owner decides
+        List<Card> cardsInOrder = new ArrayList<>(cards.getCards(game));
+        if (userData.askMoveToGraveOrder() && cardsInOrder.size() > 1
+                && chooseUse(Outcome.Neutral, "Choose the order in which the cards go to the graveyard?", source, game)) {
+            cardsInOrder = ZonesHandler.chooseOrder("order to put in graveyard (last chosen will be on top)",
+                    new CardsImpl(cardsInOrder), this, source, game);
+        }
+        for (Card card : cardsInOrder) {
             if (doDiscard(card, source, game, payForCost, false)) {
                 discardedCards.add(card);
             }
