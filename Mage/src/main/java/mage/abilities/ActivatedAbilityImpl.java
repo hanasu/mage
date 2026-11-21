@@ -47,6 +47,10 @@ public abstract class ActivatedAbilityImpl extends AbilityImpl implements Activa
     protected Condition condition;
     protected TimingRule timing = TimingRule.INSTANT;
     protected TargetController mayActivate = TargetController.YOU;
+    // the object this ability was acquired from (its id and zone change counter), null for an own ability:
+    // the activation limits count per object it's acquired from (rule 602.5c), and a card that changed
+    // zones is a new object (rule 400.7)
+    protected String acquiredFrom = null;
 
     protected ActivatedAbilityImpl(AbilityType abilityType, Zone zone) {
         super(abilityType, zone);
@@ -59,6 +63,7 @@ public abstract class ActivatedAbilityImpl extends AbilityImpl implements Activa
         maxActivationsPerTurn = ability.maxActivationsPerTurn;
         maxActivationsPerGame = ability.maxActivationsPerGame;
         condition = ability.condition;
+        acquiredFrom = ability.acquiredFrom;
     }
 
     protected ActivatedAbilityImpl(Zone zone, Effect effect, Cost cost) {
@@ -276,14 +281,26 @@ public abstract class ActivatedAbilityImpl extends AbilityImpl implements Activa
         return maxActivationsEvent.getAmount();
     }
 
+    /**
+     * Records the object this ability is acquired from, so its activation limits apply only to the ability as
+     * acquired from that object (rule 602.5c).
+     */
+    public void setAcquiredFrom(UUID objectId, Game game) {
+        this.acquiredFrom = objectId == null ? null : CardUtil.getCardZoneString("", objectId, game);
+    }
+
+    private String activationKey(String text) {
+        return text + getOriginalId() + (acquiredFrom == null ? "" : "from" + acquiredFrom);
+    }
+
     protected ActivationInfo getActivationInfo(Game game) {
         // each activate generate new instance with new id, so all activation code must use originalId, not id
         Integer turnNum = (Integer) game.getState()
-                .getValue(CardUtil.getCardZoneString("activationsTurn" + getOriginalId(), sourceId, game));
+                .getValue(CardUtil.getCardZoneString(activationKey("activationsTurn"), sourceId, game));
         Integer activationCount = (Integer) game.getState()
-                .getValue(CardUtil.getCardZoneString("activationsCount" + getOriginalId(), sourceId, game));
+                .getValue(CardUtil.getCardZoneString(activationKey("activationsCount"), sourceId, game));
         Integer totalActivations = (Integer) game.getState()
-                .getValue(CardUtil.getCardZoneString("totalActivations" + getOriginalId(), sourceId, game));
+                .getValue(CardUtil.getCardZoneString(activationKey("totalActivations"), sourceId, game));
         if (turnNum == null || activationCount == null || totalActivations == null) {
             return null;
         }
@@ -293,11 +310,11 @@ public abstract class ActivatedAbilityImpl extends AbilityImpl implements Activa
     protected void setActivationInfo(ActivationInfo activationInfo, Game game) {
         // each activate generate new instance with new id, so all activation code must use originalId, not id
         game.getState().setValue(CardUtil
-                .getCardZoneString("activationsTurn" + getOriginalId(), sourceId, game), activationInfo.turnNum);
+                .getCardZoneString(activationKey("activationsTurn"), sourceId, game), activationInfo.turnNum);
         game.getState().setValue(CardUtil
-                .getCardZoneString("activationsCount" + getOriginalId(), sourceId, game), activationInfo.activationCounter);
+                .getCardZoneString(activationKey("activationsCount"), sourceId, game), activationInfo.activationCounter);
         game.getState().setValue(CardUtil
-                .getCardZoneString("totalActivations" + getOriginalId(), sourceId, game), activationInfo.totalActivations);
+                .getCardZoneString(activationKey("totalActivations"), sourceId, game), activationInfo.totalActivations);
     }
 
     @Override

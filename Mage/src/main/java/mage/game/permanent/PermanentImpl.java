@@ -4,6 +4,7 @@ import mage.*;
 import mage.abilities.Abilities;
 import mage.abilities.AbilitiesImpl;
 import mage.abilities.Ability;
+import mage.abilities.ActivatedAbilityImpl;
 import mage.abilities.SpellAbility;
 import mage.abilities.common.RoomAbility;
 import mage.abilities.effects.ContinuousEffect;
@@ -481,6 +482,12 @@ public abstract class PermanentImpl extends CardImpl implements Permanent {
         if (!abilities.containsKey(ability.getId())) {
             Ability copyAbility = ability.copy();
             copyAbility.newId(); // needed so that source can get an ability multiple times (e.g. Raging Ravine)
+            // an ability acquired from another object: its activation limits apply only to it as acquired from
+            // that object (rule 602.5c). A copy's copied abilities are its own (rule 707.2), not acquired.
+            if (game != null && !this.isCopy() && copyAbility instanceof ActivatedAbilityImpl
+                    && ability.getSourceId() != null && !ability.getSourceId().equals(objectId)) {
+                ((ActivatedAbilityImpl) copyAbility).setAcquiredFrom(ability.getSourceId(), game);
+            }
             copyAbility.setControllerId(controllerId);
             copyAbility.setSourceId(objectId);
             // triggered abilities must be added to the state().triggers

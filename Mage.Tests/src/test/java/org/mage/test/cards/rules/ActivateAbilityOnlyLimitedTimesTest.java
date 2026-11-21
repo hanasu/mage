@@ -4,6 +4,7 @@ package org.mage.test.cards.rules;
 
 import mage.constants.PhaseStep;
 import mage.constants.Zone;
+import mage.counters.CounterType;
 import org.junit.Test;
 import org.mage.test.serverside.base.CardTestPlayerBase;
 
@@ -123,5 +124,49 @@ public class ActivateAbilityOnlyLimitedTimesTest extends CardTestPlayerBase {
         setStrictChooseMode(true);
         setStopAt(5, PhaseStep.END_TURN);
         execute();
+    }
+
+    /**
+     * An activation limit applies only to the ability as acquired from that object (rule 602.5c). A card that
+     * left the graveyard and came back is a new object (rule 400.7), so Volrath's Shapeshifter can use Wall of
+     * Roots' "Activate only once each turn" ability again.
+     */
+    @Test
+    public void testOnceEachTurnAcquiredAgainFromNewObject() {
+        // As long as the top card of your graveyard is a creature card, Volrath's Shapeshifter has the full text
+        // of that card and has the text "{2}: Discard a card."
+        addCard(Zone.BATTLEFIELD, playerA, "Volrath's Shapeshifter");
+        addCard(Zone.BATTLEFIELD, playerA, "Swamp");
+        // Flashback-Sacrifice a creature.
+        addCard(Zone.GRAVEYARD, playerA, "Cabal Therapy");
+        // Defender
+        // Put a -0/-1 counter on Wall of Roots: Add {G}. Activate only once each turn.
+        addCard(Zone.GRAVEYARD, playerA, "Wall of Roots");
+        addCard(Zone.HAND, playerA, "Unearth"); // {B}
+        addCard(Zone.HAND, playerB, "Lightning Bolt");
+
+        // a +1/+1 counter keeps the Shapeshifter alive while it has no form (0/1 with a -0/-1 counter)
+        addCounters(1, PhaseStep.PRECOMBAT_MAIN, playerA, "Wall of Roots", CounterType.P1P1, 1);
+        activateManaAbility(1, PhaseStep.PRECOMBAT_MAIN, playerA, "Put a -0/-1 counter");
+        checkPermanentCounters("first activation", 1, PhaseStep.PRECOMBAT_MAIN, playerA, "Wall of Roots", CounterType.M0M1, 1);
+
+        // Wall of Roots leaves the graveyard and comes back as a new object
+        castSpell(1, PhaseStep.PRECOMBAT_MAIN, playerA, "Unearth", "Wall of Roots");
+        waitStackResolved(1, PhaseStep.PRECOMBAT_MAIN);
+        checkPT("no form, Unearth on top", 1, PhaseStep.PRECOMBAT_MAIN, playerA, "Volrath's Shapeshifter", 1, 1);
+        activateAbility(1, PhaseStep.PRECOMBAT_MAIN, playerA, "Flashback", playerB);
+        setChoice(playerA, "Wall of Roots"); // sacrifice the returned Wall of Roots
+        setChoice(playerA, "Lightning Bolt");
+        waitStackResolved(1, PhaseStep.PRECOMBAT_MAIN);
+        checkPT("Wall of Roots form again", 1, PhaseStep.PRECOMBAT_MAIN, playerA, "Wall of Roots", 1, 5);
+
+        activateManaAbility(1, PhaseStep.PRECOMBAT_MAIN, playerA, "Put a -0/-1 counter");
+
+        setStrictChooseMode(true);
+        setStopAt(1, PhaseStep.BEGIN_COMBAT);
+        execute();
+
+        assertCounterCount(playerA, "Wall of Roots", CounterType.M0M1, 2);
+        assertPowerToughness(playerA, "Wall of Roots", 1, 4);
     }
 }
