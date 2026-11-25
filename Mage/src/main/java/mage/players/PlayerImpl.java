@@ -16,6 +16,7 @@ import mage.abilities.common.PassAbility;
 import mage.abilities.common.PlayLandAsCommanderAbility;
 import mage.abilities.common.WhileSearchingPlayFromLibraryAbility;
 import mage.abilities.costs.*;
+import mage.abilities.costs.common.DiscardHandCost;
 import mage.abilities.costs.mana.AlternateManaPaymentAbility;
 import mage.abilities.costs.mana.ManaCost;
 import mage.abilities.costs.mana.ManaCosts;
@@ -3644,6 +3645,16 @@ public abstract class PlayerImpl implements Player, Serializable {
      */
     @Override
     public ManaOptions getManaAvailable(Game originalGame) {
+        return getManaAvailable(originalGame, false);
+    }
+
+    /**
+     * Mana abilities with "discard your hand" in their cost that can't be activated while casting a spell (Lion's Eye
+     * Diamond: activate only as an instant) must be activated before, so a card in hand would be discarded by then.
+     *
+     * @param forCardsInHand true to leave out the mana of such abilities
+     */
+    private ManaOptions getManaAvailable(Game originalGame, boolean forCardsInHand) {
         // workaround to fix a triggers list modification bug (game must be immutable on playable calculations)
         Game game = originalGame.createSimulationForPlayableCalc();
 
@@ -3660,6 +3671,9 @@ public abstract class PlayerImpl implements Player, Serializable {
             Abilities<ActivatedManaAbilityImpl> manaAbilities
                     = card.getAbilities(game).getAvailableActivatedManaAbilities(Zone.HAND, playerId, game);
             for (ActivatedManaAbilityImpl ability : manaAbilities) {
+                if (forCardsInHand && isDiscardHandManaAbility(ability)) {
+                    continue;
+                }
                 Abilities<ActivatedManaAbilityImpl> noTapAbilities = new AbilitiesImpl<>(ability);
                 if (ability.getManaCosts().isEmpty() && !ability.isPoolDependant()) {
                     sourceWithoutManaCosts.add(noTapAbilities);
@@ -3677,6 +3691,10 @@ public abstract class PlayerImpl implements Player, Serializable {
                     = permanent.getAbilities(game).getAvailableActivatedManaAbilities(Zone.BATTLEFIELD, playerId, game); // returns ability only if canActivate is true
             for (Iterator<ActivatedManaAbilityImpl> it = manaAbilities.iterator(); it.hasNext(); ) {
                 ActivatedManaAbilityImpl ability = it.next();
+                if (forCardsInHand && isDiscardHandManaAbility(ability)) {
+                    it.remove();
+                    continue;
+                }
                 if (canUse == null) {
                     canUse = permanent.canUseActivatedAbilities(game);
                 }
@@ -3743,6 +3761,16 @@ public abstract class PlayerImpl implements Player, Serializable {
 
         // make sure it independent of sim game
         return availableMana.copy();
+    }
+
+    private static boolean isDiscardHandManaAbility(ActivatedManaAbilityImpl ability) {
+        return ability.getCosts().stream().anyMatch(DiscardHandCost.class::isInstance);
+    }
+
+    private boolean controlsDiscardHandManaAbility(Game game) {
+        return game.getBattlefield().getActivePermanents(playerId, game).stream()
+                .flatMap(permanent -> permanent.getAbilities(game).getActivatedManaAbilities(Zone.BATTLEFIELD).stream())
+                .anyMatch(PlayerImpl::isDiscardHandManaAbility);
     }
 
     /**
@@ -4383,6 +4411,8 @@ public abstract class PlayerImpl implements Player, Serializable {
 
         Game game = originalGame.createSimulationForPlayableCalc();
         ManaOptions availableMana = getManaAvailable(game); // get available mana options (mana pool and conditional mana added (but conditional still lose condition))
+        // own cards in hand can't use mana of abilities that discard the hand (Lion's Eye Diamond)
+        ManaOptions availableManaForHand = controlsDiscardHandManaAbility(game) ? getManaAvailable(game, true) : availableMana;
         if (hidden && fromZone.match(Zone.HAND)) {
             for (Card card : hand.getCards(game)) {
                 for (Ability ability : card.getAbilities(game)) { // gets this activated ability from hand? (Morph?)
@@ -4419,7 +4449,7 @@ public abstract class PlayerImpl implements Player, Serializable {
                             continue;
                         }
 
-                        ActivatedAbility playAbility = findActivatedAbilityFromPlayable(card, availableMana, ability, game);
+                        ActivatedAbility playAbility = findActivatedAbilityFromPlayable(card, availableManaForHand, ability, game);
                         if (playAbility != null && !playable.contains(playAbility)) {
                             playable.add(playAbility);
                         }
@@ -4453,7 +4483,8 @@ public abstract class PlayerImpl implements Player, Serializable {
             for (Cards revealedCards : game.getState().getRevealed().values()) {
                 for (Card card : revealedCards.getCards(game)) {
                     // revealed cards can be from any zones
-                    getPlayableFromObjectAll(game, game.getState().getZone(card.getId()), card, availableMana, playable);
+                    getPlayableFromObjectAll(game, game.getState().getZone(card.getId()), card,
+                            hand.contains(card.getId()) ? availableManaForHand : availableMana, playable);
                 }
             }
         }
@@ -4499,7 +4530,8 @@ public abstract class PlayerImpl implements Player, Serializable {
                 if (player != null && !player.getHand().isEmpty()) {
                     for (Card card : player.getHand().getCards(game)) {
                         if (card != null) {
-                            getPlayableFromObjectAll(game, Zone.HAND, card, availableMana, playable);
+                            getPlayableFromObjectAll(game, Zone.HAND, card,
+                                    playerInRangeId.equals(getId()) ? availableManaForHand : availableMana, playable);
                         }
                     }
                 }
