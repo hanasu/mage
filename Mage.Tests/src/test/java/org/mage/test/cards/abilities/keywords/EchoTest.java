@@ -1,5 +1,6 @@
 package org.mage.test.cards.abilities.keywords;
 
+import mage.abilities.keyword.EchoAbility;
 import mage.constants.PhaseStep;
 import mage.constants.Zone;
 import org.junit.Test;
@@ -126,11 +127,40 @@ public class EchoTest extends CardTestPlayerBase {
         activateAbility(3, PhaseStep.PRECOMBAT_MAIN, playerA, "{2}: Discard a card");
         setChoice(playerA, "Karmic Guide");
 
+        // no echo trigger in turn 5 (strict mode would fail on its "pay echo?" choice)
         setStrictChooseMode(true);
         setStopAt(5, PhaseStep.BEGIN_COMBAT);
         execute();
 
         assertPermanentCount(playerA, "Karmic Guide", 1);
+        assertAbility(playerA, "Karmic Guide", new EchoAbility("{3}{W}{W}"), true);
+        assertPermanentCount(playerA, "Island", 5);
+    }
+
+    /**
+     * Same as above, but Volrath's Shapeshifter is cast in turn 3 after the upkeep: in turn 5 it came under your
+     * control since the beginning of your last upkeep, so the echo it got from Karmic Guide triggers.
+     */
+    @Test
+    public void testEchoAcquiredByPermanentControlledSinceLastUpkeep() {
+        addCard(Zone.HAND, playerA, "Volrath's Shapeshifter"); // {1}{U}{U}
+        // Echo {3}{W}{W}
+        addCard(Zone.HAND, playerA, "Karmic Guide");
+        addCard(Zone.BATTLEFIELD, playerA, "Island", 5);
+
+        castSpell(3, PhaseStep.PRECOMBAT_MAIN, playerA, "Volrath's Shapeshifter");
+        waitStackResolved(3, PhaseStep.PRECOMBAT_MAIN);
+        activateAbility(3, PhaseStep.PRECOMBAT_MAIN, playerA, "{2}: Discard a card");
+        setChoice(playerA, "Karmic Guide");
+
+        setChoice(playerA, false); // don't pay echo in turn 5
+
+        setStrictChooseMode(true);
+        setStopAt(5, PhaseStep.BEGIN_COMBAT);
+        execute();
+
+        assertPermanentCount(playerA, "Karmic Guide", 0);
+        assertGraveyardCount(playerA, "Volrath's Shapeshifter", 1);
     }
 
 }
