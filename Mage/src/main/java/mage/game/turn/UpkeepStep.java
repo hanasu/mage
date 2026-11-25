@@ -3,7 +3,10 @@
 package mage.game.turn;
 
 import mage.constants.PhaseStep;
+import mage.game.Game;
 import mage.game.events.GameEvent.EventType;
+
+import java.util.UUID;
 
 /**
  * @author BetaSteward_at_googlemail.com
@@ -19,6 +22,13 @@ public class UpkeepStep extends Step {
 
     protected UpkeepStep(final UpkeepStep step) {
         super(step);
+    }
+
+    @Override
+    public void beginStep(Game game, UUID activePlayerId) {
+        // before the "at the beginning of upkeep" triggers (echo)
+        game.getBattlefield().beginningOfUpkeep(game);
+        super.beginStep(game, activePlayerId);
     }
 
     @Override

@@ -9,8 +9,8 @@ import mage.abilities.dynamicvalue.DynamicValue;
 import mage.abilities.effects.keyword.EchoEffect;
 import mage.constants.Zone;
 import mage.game.Game;
-import mage.game.permanent.Permanent;
 import mage.game.events.GameEvent;
+import mage.game.permanent.Permanent;
 
 /**
  * @author Backfir3
@@ -64,13 +64,14 @@ public class EchoAbility extends TriggeredAbilityImpl {
     @Override
     public boolean checkTrigger(GameEvent event, Game game) {
         // rule 702.30a: "if this permanent came under your control since the beginning of your last upkeep", that
-        // is, it wasn't under your control when your previous turn began. A property of the permanent, not of this
-        // ability object: an echo ability the permanent acquires later (Volrath's Shapeshifter) is new.
+        // is, it wasn't under your control when your previous upkeep step began (additional upkeep steps count).
+        // A property of the permanent, not of this ability object: an echo ability the permanent acquires later
+        // (Volrath's Shapeshifter) is new.
         if (!event.getPlayerId().equals(this.controllerId)) {
             return false;
         }
         Permanent permanent = game.getPermanent(this.getSourceId());
-        return permanent != null && permanent.getControllerTurnsBegun() < 2;
+        return permanent != null && permanent.getControllerUpkeepsBegun() < 2;
     }
 
     @Override

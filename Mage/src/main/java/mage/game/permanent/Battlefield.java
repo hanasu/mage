@@ -175,6 +175,12 @@ public class Battlefield implements Serializable {
         }
     }
 
+    public void beginningOfUpkeep(Game game) {
+        for (Permanent perm : field.values()) {
+            perm.beginningOfUpkeep(game);
+        }
+    }
+
     public void endOfTurn(Game game) {
         for (Permanent perm : field.values()) {
             perm.endOfTurn(game);

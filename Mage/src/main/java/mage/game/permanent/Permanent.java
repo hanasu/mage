@@ -311,10 +311,15 @@ public interface Permanent extends Card, Controllable {
     int getTurnsOnBattlefield();
 
     /**
-     * The turns of its controller that began while it was under that player's control, since it entered the
-     * battlefield or last changed control (for echo, rule 702.30a).
+     * Called at the beginning of each upkeep step, before the upkeep triggers.
      */
-    int getControllerTurnsBegun();
+    void beginningOfUpkeep(Game game);
+
+    /**
+     * The upkeep steps of its controller that began while it was under that player's control, since it entered the
+     * battlefield or last changed control, including additional upkeep steps (for echo, rule 702.30a).
+     */
+    int getControllerUpkeepsBegun();
 
     void addPower(int power);
 
