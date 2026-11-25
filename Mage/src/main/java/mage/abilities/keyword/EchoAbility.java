@@ -10,16 +10,14 @@ import mage.abilities.effects.keyword.EchoEffect;
 import mage.constants.Zone;
 import mage.game.Game;
 import mage.game.events.GameEvent;
-
-import java.util.UUID;
+import mage.game.permanent.Permanent;
+import mage.watchers.common.EchoWatcher;
 
 /**
  * @author Backfir3
  */
 public class EchoAbility extends TriggeredAbilityImpl {
 
-    protected UUID lastController;
-    protected boolean echoPaid;
     protected Costs<Cost> echoCosts = new CostsImpl<>();
     private boolean manaEcho = true;
     private DynamicValue amount;
@@ -27,37 +25,32 @@ public class EchoAbility extends TriggeredAbilityImpl {
 
     public EchoAbility(String manaString) {
         super(Zone.BATTLEFIELD, new EchoEffect(new ManaCostsImpl<>(manaString)), false);
-        this.echoPaid = false;
+        this.addWatcher(new EchoWatcher());
         this.echoCosts.add(new ManaCostsImpl<>(manaString));
-        this.lastController = null;
         this.rule = null;
     }
 
     public EchoAbility(DynamicValue amount, String rule) {
         super(Zone.BATTLEFIELD, new EchoEffect(amount), false);
+        this.addWatcher(new EchoWatcher());
         this.amount = amount;
-        this.echoPaid = false;
         this.echoCosts.add(getCosts());
-        this.lastController = null;
         this.manaEcho = true;
         this.rule = rule;
     }
 
     public EchoAbility(Cost echoCost) {
         super(Zone.BATTLEFIELD, new EchoEffect(echoCost), false);
-        this.echoPaid = false;
+        this.addWatcher(new EchoWatcher());
         this.echoCosts.add(echoCost);
         this.manaEcho = false;
-        this.lastController = null;
         this.rule = null;
     }
 
     protected EchoAbility(final EchoAbility ability) {
         super(ability);
-        this.echoPaid = ability.echoPaid;
         this.echoCosts = ability.echoCosts.copy();
         this.manaEcho = ability.manaEcho;
-        this.lastController = ability.lastController;
         this.amount = ability.amount;
         this.rule = ability.rule;
     }
@@ -69,35 +62,18 @@ public class EchoAbility extends TriggeredAbilityImpl {
 
     @Override
     public boolean checkEventType(GameEvent event, Game game) {
-        return event.getType() == GameEvent.EventType.ENTERS_THE_BATTLEFIELD
-                || event.getType() == GameEvent.EventType.UPKEEP_STEP_PRE;
+        return event.getType() == GameEvent.EventType.UPKEEP_STEP_PRE;
     }
 
     @Override
     public boolean checkTrigger(GameEvent event, Game game) {
-        // reset the echo paid state back, if creature enters the battlefield
-        if (event.getType() == GameEvent.EventType.ENTERS_THE_BATTLEFIELD
-                && event.getTargetId().equals(this.getSourceId())) {
-
-            this.echoPaid = false;
+        // a property of the permanent, not of this ability object: an echo ability the permanent gets later
+        // (Volrath's Shapeshifter) is a new object
+        if (!event.getPlayerId().equals(this.getControllerId())) {
+            return false;
         }
-        if (event.getType() == GameEvent.EventType.UPKEEP_STEP_PRE) {
-            if (lastController != null) {
-                if (!lastController.equals(this.controllerId)) {
-                    this.echoPaid = false;
-                }
-            }
-            // remember the last controller
-            lastController = this.getControllerId();
-            // if echo not paid yet, controller has to pay
-            if (event.getPlayerId().equals(this.controllerId)
-                    && lastController.equals(this.controllerId)
-                    && !this.echoPaid) {
-                this.echoPaid = true;
-                return true;
-            }
-        }
-        return false;
+        Permanent permanent = game.getPermanent(this.getSourceId());
+        return permanent != null && EchoWatcher.cameUnderControlSinceLastUpkeep(permanent, game);
     }
 
     @Override
